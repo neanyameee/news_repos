@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Персонализированные новости{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="theme-{{ preferences.theme|default:'light' }}">
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>NewsPersonalizer</h1>
+            </div>
+            <div class="nav-links">
+                <a href="{% url 'index' %}">Главная</a>
+                <a href="{% url 'preferences' %}">Настройки</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NewsPersonalizer. Все права защищены.</p>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

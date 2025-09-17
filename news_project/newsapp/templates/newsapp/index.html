@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="sidebar">
+        <h3>История посещений</h3>
+        <div class="visit-history">
+            {% with visit_history=request.COOKIES.visit_history|default:'[]' %}
+                {% for visit in visit_history|slice:":5 reversed" %}
+                    <div class="visit-item">
+                        <span class="visit-page">{{ visit.page }}</span>
+                        <span class="visit-time">{{ visit.timestamp|date:"H:i" }}</span>
+                    </div>
+                {% empty %}
+                    <p>История посещений пуста</p>
+                {% endfor %}
+            {% endwith %}
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="welcome-section">
+            <h2>Добро пожаловать в ваш персонализированный новостной портал!</h2>
+            <p>Здесь вы найдете новости, подобранные специально для вас.</p>
+            <a href="{% url 'preferences' %}" class="btn btn-primary">Настроить предпочтения</a>
+        </div>
+
+        <div class="news-grid">
+            {% for item in news %}
+            <div class="news-card">
+                <div class="news-image">
+                    <img src="{% static 'images/news-' %}{{ item.category }}.jpg" alt="{{ item.title }}">
+                </div>
+                <div class="news-content">
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.content }}</p>
+                    <span class="news-date">{{ item.date }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

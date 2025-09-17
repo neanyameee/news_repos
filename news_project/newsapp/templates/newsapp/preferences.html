@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Настройки новостей{% endblock %}
+
+{% block content %}
+<div class="preferences-container">
+    <h2>Настройте ваши новостные предпочтения</h2>
+
+    <form method="post" class="preferences-form">
+        {% csrf_token %}
+
+        <div class="form-section">
+            <h3>Категории новостей</h3>
+            <div class="categories-grid">
+                {% for value, label in form.categories.field.choices %}
+                <label class="category-checkbox">
+                    <input type="checkbox" name="categories" value="{{ value }}"
+                           {% if value in form.categories.value %}checked{% endif %}>
+                    <span class="checkmark"></span>
+                    {{ label }}
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Настройки отображения</h3>
+            <div class="form-group">
+                <label>Язык интерфейса:</label>
+                {{ form.language }}
+            </div>
+            <div class="form-group">
+                <label>Тема оформления:</label>
+                {{ form.theme }}
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Уведомления</h3>
+            <label class="checkbox-label">
+                {{ form.email_notifications }}
+                <span class="checkmark"></span>
+                Получать email уведомления
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-save">Сохранить настройки</button>
+    </form>
+</div>
+{% endblock %}
