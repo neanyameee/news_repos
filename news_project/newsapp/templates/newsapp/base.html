@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Персонализированные новости{% endblock %}</title>
     <link rel="stylesheet" href="/static/css/style.css">
-    {% block extra_css %}{% endblock %}
 </head>
-<body class="theme-{{ preferences.theme|default:'light' }}">
+<body class="theme-{{ settings.theme|default:'light' }}">
     <header>
         <nav>
             <div class="logo">
@@ -15,7 +14,8 @@
             </div>
             <div class="nav-links">
                 <a href="{% url 'index' %}">Главная</a>
-                <a href="{% url 'preferences' %}">Настройки</a>
+                <a href="{% url 'preferences' %}">Предпочтения</a>
+                <a href="{% url 'settings' %}">Настройки</a>
             </div>
         </nav>
     </header>
@@ -25,9 +25,8 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 NewsPersonalizer. Все права защищены.</p>
+        <p>Текущий язык: {{ settings.language|default:'ru' }} | Тема: {{ settings.theme|default:'light' }}</p>
+        <p>&copy; 2025 NewsPersonalizer</p>
     </footer>
-
-    {% block extra_js %}{% endblock %}
 </body>
 </html>

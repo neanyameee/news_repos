@@ -9,7 +9,6 @@ class NewsCategory(models.Model):
         return self.name
 
 
-# Данные в коде (как требуется в задании)
 NEWS_CATEGORIES = [
     {'id': 1, 'name': 'Политика', 'description': 'Политические новости'},
     {'id': 2, 'name': 'Экономика', 'description': 'Экономические новости'},
@@ -21,11 +20,9 @@ NEWS_CATEGORIES = [
 LANGUAGES = [
     ('ru', 'Русский'),
     ('en', 'English'),
-    ('es', 'Español'),
 ]
 
 THEMES = [
     ('light', 'Светлая'),
     ('dark', 'Темная'),
-    ('auto', 'Авто'),
 ]
